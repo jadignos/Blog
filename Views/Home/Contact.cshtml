@@ -1,0 +1,49 @@
+﻿@model ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+    ViewBag.BackgroundHeaderImg = $"{Context.Request.PathBase}/img/contact-bg.jpg";
+    ViewBag.PageHeader = "Contact Me";
+    ViewBag.PageSubHeader = "Have questions? I have answers.";
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <div asp-validation-summary="All" class="post-preview text-danger">
+            @ViewBag.DisplayStatus
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <form asp-action="Contact" asp-controller="Home" method="post">
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Name" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Phone #" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Message"></label>
+                    <textarea asp-for="Message" class="form-control" placeholder="Message" rows="5"></textarea>
+                </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</div>
+

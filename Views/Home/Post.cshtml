@@ -1,0 +1,69 @@
+﻿@model Post
+
+@{
+    ViewBag.BackgroundHeaderImg = string.IsNullOrEmpty(Model.Image)
+        ? $"{Context.Request.PathBase}/img/1about-bg.jpg"
+        : $"{Context.Request.PathBase}/images/{Model.Image}";
+    ViewBag.PageHeader = Model.Title;
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+    ViewBag.Keywords = Model.Tags;
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        @Html.Raw(Model.Body)
+        <div class="post-preview">
+            <p class="post-meta">
+                Posted by
+                <a href="#">Admin</a>
+                on @Model.DateCreated
+            </p>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="clearfix">
+                <button type="button" class="btn btn-primary float-left" name="addCommentBtn" data-toggle="modal" data-target="#commentModal">Add Comment</button>
+            </div>
+        }
+        else
+        {
+            <div class="post-preview">
+                <p class="post-meta">
+                    <a asp-controller="Auth" asp-action="Login">LOG-IN</a> to add a comment.
+                </p>
+            </div>
+        }
+        <partial name="_DisplayComments" model="new DisplayCommentViewModel { PostId = Model.Id, Comments = Model.Comments }" />
+    </div>
+</div>
+<partial name="_CommentForm" model="new CommentFormViewModel { PostId = Model.Id }" />
+
+@section PostJs
+{
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script type="text/javascript">
+            const addCommentBtn = document.querySelector("[name='addCommentBtn']");
+            const replyBtns = document.querySelectorAll("[name='replyBtn']");
+            const commentId = document.querySelector("#CommentId");
+
+            replyBtns.forEach(button =>
+                button.addEventListener("click", () => {
+                    commentId.value = button.dataset.commentid;
+                    button.dataset.toggle = "modal";
+                    button.dataset.target = "#commentModal";
+                    $('#addComment').modal('show');
+                }));
+
+            addCommentBtn.addEventListener("click", () => {
+                commentId.value = 0;
+            });
+        </script>
+    }
+}

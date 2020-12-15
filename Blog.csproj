@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>4a8f85cf-96ea-4b23-8570-8817a1879029</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200911130414_AddCategoryAndOtherColumns.cs" />
+    <Compile Remove="Migrations\20200911130414_AddCategoryAndOtherColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200911130711_AddCategoryAndOtherColumns.cs" />
+    <Compile Remove="Migrations\20200911130711_AddCategoryAndOtherColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200911130808_AddCategoryAndOtherColumns.cs" />
+    <Compile Remove="Migrations\20200911130808_AddCategoryAndOtherColumns.Designer.cs" />
+    <Compile Remove="Migrations\20200911131002_AddCategory.cs" />
+    <Compile Remove="Migrations\20200911131002_AddCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200911131643_AddCategory.cs" />
+    <Compile Remove="Migrations\20200911131643_AddCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200917102133_AddedCommentAndSubCommentTable.cs" />
+    <Compile Remove="Migrations\20200917102133_AddedCommentAndSubCommentTable.Designer.cs" />
+    <Compile Remove="Migrations\20200923005929_AddContactTbl.cs" />
+    <Compile Remove="Migrations\20200923005929_AddContactTbl.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\scss\clean-blog.scss" />
+    <None Include="wwwroot\scss\_bootstrap-overrides.scss" />
+    <None Include="wwwroot\scss\_contact.scss" />
+    <None Include="wwwroot\scss\_footer.scss" />
+    <None Include="wwwroot\scss\_global.scss" />
+    <None Include="wwwroot\scss\_masthead.scss" />
+    <None Include="wwwroot\scss\_mixins.scss" />
+    <None Include="wwwroot\scss\_navbar.scss" />
+    <None Include="wwwroot\scss\_post.scss" />
+    <None Include="wwwroot\scss\_variables.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />
+  </ItemGroup>
+</Project>

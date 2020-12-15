@@ -1,0 +1,54 @@
+﻿@model PostViewModel
+
+@{
+    ViewBag.Title = "Admin Panel";
+    ViewBag.BackgroundHeaderImg = "";
+    ViewBag.PageHeader = Model.Id == 0 ? "Create Post" : "Edit Post";
+    ViewBag.PageSubHeader = "";
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <form method="post" asp-controller="Admin" asp-action="Upsert" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="CurrentImage" type="hidden" />
+            <input asp-for="DateCreated" type="hidden" />
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="CategoryId">Category</label>
+                </div>
+                <select class="custom-select" asp-for="CategoryId" asp-items="@Model.Categories"></select>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" placeholder="Title" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Tags"></label>
+                    <input asp-for="Tags" class="form-control" placeholder="Tags" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" rows="2" class="form-control" placeholder="Description"></textarea>
+                </div>
+            </div>
+            <textarea asp-for="Body" id="body"></textarea>
+            <div class="control-group">
+                <input asp-for="Image" />
+            </div>
+            <input class="btn btn-primary float-right" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>
+
+@section Trumbowyg {
+    <script src="~/lib/trumbowyg/dist/trumbowyg.min.js"></script>
+    <script type="text/javascript">
+        $('#body').trumbowyg();
+    </script>
+}

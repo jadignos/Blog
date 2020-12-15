@@ -1,0 +1,59 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    ViewBag.BackgroundHeaderImg = $"{Context.Request.PathBase}/img/register-bg.jpg";
+    ViewBag.PageHeader = "Register";
+    ViewBag.PageSubHeader = "Create an Account";
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <div asp-validation-summary="All" class="post-preview text-danger"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <form id="registerForm" asp-controller="Auth" asp-action="Register" method="post">
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control" placeholder="Username" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Email Address" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                </div>
+            </div>
+            <br />
+            <button id="registerButton" type="button" class="btn btn-primary">Sign-Up</button>
+        </form>
+    </div>
+</div>
+
+@section RegisterJs
+{
+    <script type="text/javascript">
+        const registerButton = document.querySelector("#registerButton");
+        const registerForm = document.querySelector("#registerForm");
+        registerButton.addEventListener("click", () => {
+            registerButton.setAttribute("disabled", "");
+            registerForm.submit();
+        });
+    </script>
+}
+

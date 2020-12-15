@@ -1,0 +1,42 @@
+﻿@model DisplayCommentViewModel
+
+@{
+
+}
+
+
+@foreach (var comment in Model.Comments)
+{
+    <div class="post-preview">
+        <p class="post-meta-date">
+            @comment.CreatedDate
+            <strong>
+                <a href="#">@comment.UserName</a>
+            </strong>
+        </p>
+        <p>
+            @comment.Message
+        </p>
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="button" class="btn btn-light btn-sm" name="replyBtn" data-commentid="@comment.Id">Reply</button>
+    }
+
+    foreach (var subComment in comment.SubComments)
+    {
+        <div class="post-preview" style="margin-left: 50px">
+            <p class="post-meta-date">
+                @subComment.CreatedDate
+                <strong>
+                    <a href="#">@subComment.UserName</a>
+                </strong>
+            </p>
+            <p>
+                @subComment.Message
+            </p>
+        </div>
+    }
+}
+
